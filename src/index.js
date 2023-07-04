@@ -2,10 +2,11 @@ import { FlatList, SafeAreaView, StyleSheet, View } from 'react-native';
 
 import { CategoryItem, Header } from './components';
 import CATEGORIES from './constants/data/categories.json';
+import { COLORS } from './themes';
 
 export default function App() {
   const onSelectCategory = (id) => {
-    alert(id);
+    console.log(id);
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -27,7 +28,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.background,
   },
   categoryContainer: {
     marginTop: 15,
