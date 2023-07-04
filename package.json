@@ -20,7 +20,14 @@
     "prettier": "^2.8.8"
   },
   "eslintConfig": {
-    "extends": "universe/native"
+    "extends": "universe/native",
+    "rules": {
+      "prettier/prettier": [
+        "error", {
+          "singleQuote": true
+        }
+      ]
+    }
   },
   "private": true
 }
