@@ -6,7 +6,7 @@ import { COLORS } from '../../../themes';
 const CategoryItem = ({ name, id, backgroundColor, backgroundImage, onSelectCategory }) => {
   return (
     <TouchableHighlight
-      onPress={() => onSelectCategory(id)}
+      onPress={onSelectCategory}
       style={[styles.container, { backgroundColor }]}
       underlayColor={COLORS.primary}>
       <ImageBackground
