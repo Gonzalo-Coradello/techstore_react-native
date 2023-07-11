@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { COLORS } from '../../../themes';
+import { COLORS, FONTS } from '../../../themes';
 
 export const styles = StyleSheet.create({
   container: {
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   },
   categoryName: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: FONTS.bold,
     color: COLORS.white,
     padding: 20,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',

@@ -11,7 +11,8 @@
     "expo": "~48.0.18",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
-    "react-native": "0.71.8"
+    "react-native": "0.71.8",
+    "expo-font": "~11.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -23,7 +24,8 @@
     "extends": "universe/native",
     "rules": {
       "prettier/prettier": [
-        "error", {
+        "error",
+        {
           "singleQuote": true
         }
       ]
@@ -31,4 +33,3 @@
   },
   "private": true
 }
-

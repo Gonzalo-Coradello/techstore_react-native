@@ -1,9 +1,10 @@
+import { useFonts } from 'expo-font';
 import { useState } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, SafeAreaView, StyleSheet, View } from 'react-native';
 
 import { Header } from './components';
 import { Categories, Products } from './screens';
-import { COLORS } from './themes';
+import { COLORS, FONTS } from './themes';
 
 const categoryDefault = {
   categoryId: null,
@@ -11,6 +12,12 @@ const categoryDefault = {
 };
 
 export default function App() {
+  const [loaded] = useFonts({
+    [FONTS.bold]: require('../assets/fonts/Inter-Bold.ttf'),
+    [FONTS.medium]: require('../assets/fonts/Inter-Regular.ttf'),
+    [FONTS.regular]: require('../assets/fonts/Inter-Medium.ttf'),
+    [FONTS.light]: require('../assets/fonts/Inter-Light.ttf'),
+  });
   const [isCategorySelected, setIsCategorySelected] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(categoryDefault);
 
@@ -24,6 +31,14 @@ export default function App() {
     setIsCategorySelected(!isCategorySelected);
     setSelectedCategory(categoryDefault);
   };
+
+  if (!loaded) {
+    return (
+      <View style={styles.loaderContainer}>
+        <ActivityIndicator color={COLORS.primary} size="large" />
+      </View>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -42,5 +57,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  loaderContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
