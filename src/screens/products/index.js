@@ -7,7 +7,8 @@ import { Input } from '../../components';
 import PRODUCTS from '../../constants/data/products.json';
 import { COLORS } from '../../themes';
 
-function Products({ handleGoBack, categorySelected }) {
+function Products({ navigation, route }) {
+  const { categoryId, color } = route.params;
   const [search, setSearch] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [borderColor] = useState(COLORS.primary);
@@ -18,12 +19,9 @@ function Products({ handleGoBack, categorySelected }) {
   };
 
   const handleFocus = () => {};
-
   const handleBlur = () => {};
 
-  const filteredProductsByCategory = PRODUCTS.filter(
-    (p) => p.categoryId === categorySelected.categoryId
-  );
+  const filteredProductsByCategory = PRODUCTS.filter((p) => p.categoryId === categoryId);
 
   const filterBySearch = (query) => {
     let updatedProductList = [...filteredProductsByCategory];
@@ -40,12 +38,12 @@ function Products({ handleGoBack, categorySelected }) {
     setFilteredProducts([]);
   };
 
+  const onSelectProduct = ({ productId, name }) => {
+    navigation.navigate('ProductDetail', { productId, color, name });
+  };
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.goBack} onPress={handleGoBack}>
-        <Ionicons name="arrow-back" size={30} color={COLORS.black} />
-        <Text style={styles.goBackText}>Go back</Text>
-      </TouchableOpacity>
       <View style={styles.header}>
         <Input
           value={search}
@@ -70,10 +68,12 @@ function Products({ handleGoBack, categorySelected }) {
           style={styles.products}
           data={search.length > 0 ? filteredProducts : filteredProductsByCategory}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => null} style={styles.productContainer}>
+            <TouchableOpacity
+              onPress={() => onSelectProduct({ productId: item.id, name: item.name })}
+              style={styles.productContainer}>
               <ImageBackground
                 source={{ uri: item.image }}
-                style={[styles.productImage, { backgroundColor: categorySelected.color }]}
+                style={[styles.productImage, { backgroundColor: color }]}
                 resizeMethod="resize"
                 resizeMode="contain"
               />
@@ -93,7 +93,7 @@ function Products({ handleGoBack, categorySelected }) {
       </View>
       {filteredProducts.length === 0 && search.length > 0 && (
         <View style={styles.notFound}>
-          <Text style={styles.notFoundText}>Not found</Text>
+          <Text style={styles.notFoundText}>No products found</Text>
         </View>
       )}
     </View>
