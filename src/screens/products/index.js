@@ -1,14 +1,16 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { FlatList, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import { styles } from './styles';
 import { Input } from '../../components';
-import PRODUCTS from '../../constants/data/products.json';
 import { COLORS } from '../../themes';
 
 function Products({ navigation, route }) {
   const { categoryId, color } = route.params;
+  const products = useSelector((state) => state.products.data);
+
   const [search, setSearch] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [borderColor] = useState(COLORS.primary);
@@ -21,7 +23,7 @@ function Products({ navigation, route }) {
   const handleFocus = () => {};
   const handleBlur = () => {};
 
-  const filteredProductsByCategory = PRODUCTS.filter((p) => p.categoryId === categoryId);
+  const filteredProductsByCategory = products.filter((p) => p.categoryId === categoryId);
 
   const filterBySearch = (query) => {
     let updatedProductList = [...filteredProductsByCategory];
