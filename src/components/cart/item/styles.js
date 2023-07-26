@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     maxWidth: 120,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.secondary,
     borderRadius: 5,
   },
   image: {

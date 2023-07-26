@@ -1,17 +1,27 @@
-import { FlatList, SafeAreaView, View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { ActivityIndicator, FlatList, SafeAreaView, Text, View } from 'react-native';
 
 import { styles } from './styles';
 import { CategoryItem } from '../../components';
 import { ORIENTATION } from '../../constants/orientation';
 import useOrientation from '../../hooks/useOrientation';
+import { useGetCategoriesQuery } from '../../store/categories/api';
+import { COLORS } from '../../themes';
 
 function Categories({ navigation }) {
-  const categories = useSelector((state) => state.categories.data);
+  const { data: categories, error, isLoading } = useGetCategoriesQuery();
   const orientation = useOrientation();
   const onSelectCategory = ({ categoryId, color, name }) => {
     navigation.navigate('Products', { categoryId, color, name });
   };
+
+  if (isLoading)
+    return (
+      <View style={styles.loaderContainer}>
+        <ActivityIndicator size="large" color={COLORS.primary} />
+      </View>
+    );
+
+  if (error) return <Text>{error.message}</Text>;
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
