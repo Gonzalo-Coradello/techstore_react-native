@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, SafeAreaView, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 
 import { styles } from './styles';
 import { CategoryItem } from '../../components';
@@ -23,30 +23,28 @@ function Categories({ navigation }) {
 
   if (error) return <Text>{error.message}</Text>;
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <FlatList
-          data={categories}
-          style={styles.categoryContainer}
-          contentContainerStyle={styles.listCategory}
-          renderItem={({ item }) => (
-            <CategoryItem
-              {...item}
-              onSelectCategory={() =>
-                onSelectCategory({
-                  categoryId: item.id,
-                  color: item.backgroundColor,
-                  name: item.name,
-                })
-              }
-              style={orientation === ORIENTATION.LANDSCAPE ? styles.categoryItemLandscape : null}
-            />
-          )}
-          keyExtractor={(item) => item.id}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <FlatList
+        data={categories}
+        style={styles.categoryContainer}
+        contentContainerStyle={styles.listCategory}
+        renderItem={({ item }) => (
+          <CategoryItem
+            {...item}
+            onSelectCategory={() =>
+              onSelectCategory({
+                categoryId: item.id,
+                color: item.backgroundColor,
+                name: item.name,
+              })
+            }
+            style={orientation === ORIENTATION.LANDSCAPE ? styles.categoryItemLandscape : null}
+          />
+        )}
+        keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
+      />
+    </View>
   );
 }
 

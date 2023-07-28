@@ -10,6 +10,15 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.white,
   },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyText: {
+    fontSize: 16,
+    fontFamily: FONTS.regular,
+  },
   footerContainer: {
     backgroundColor: COLORS.background,
     borderTopColor: COLORS.secondary,
