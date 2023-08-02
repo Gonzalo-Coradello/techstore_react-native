@@ -4,7 +4,6 @@ import { styles } from './styles';
 
 const formatDate = (time) => {
   const date = new Date(time);
-  console.warn({ time, date, locale: date.toLocaleDateString() });
   return date.toLocaleDateString();
 };
 
