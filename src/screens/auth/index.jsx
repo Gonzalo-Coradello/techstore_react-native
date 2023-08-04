@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, SafeAreaView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import { styles } from './styles';
@@ -16,16 +16,15 @@ const Auth = () => {
   const buttonTitle = isLogin ? 'Login' : 'Register';
   const messageText = isLogin ? 'Need an account?' : 'Already have an account?';
 
-  const [signIn, { data }] = useSignInMutation();
+  const [signIn] = useSignInMutation();
+
   const [signUp] = useSignUpMutation();
 
-  const handleAuth = async () => {
+  const onHandlerAuth = async () => {
     try {
       if (isLogin) {
         const result = await signIn({ email, password });
-        if (result.data) {
-          dispatch(setUser(data));
-        }
+        if (result?.data) dispatch(setUser(result.data));
       } else {
         await signUp({ email, password });
       }
@@ -35,7 +34,7 @@ const Auth = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.header}>{headerTitle}</Text>
         <Text style={styles.label}>Email</Text>
@@ -45,9 +44,7 @@ const Auth = () => {
           placeholderTextColor={COLORS.gray}
           autoCapitalize="none"
           autoCorrect={false}
-          onChangeText={(text) => {
-            setEmail(text);
-          }}
+          onChangeText={(text) => setEmail(text)}
           value={email}
         />
         <Text style={styles.label}>Password</Text>
@@ -58,23 +55,21 @@ const Auth = () => {
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry
-          onChangeText={(text) => {
-            setPassword(text);
-          }}
+          onChangeText={(text) => setPassword(text)}
           value={password}
         />
         <View style={styles.linkContainer}>
           <TouchableOpacity style={styles.link} onPress={() => setIsLogin(!isLogin)}>
-            <Text>{messageText}</Text>
+            <Text style={styles.linkText}>{messageText}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={handleAuth}>
+          <TouchableOpacity style={styles.button} onPress={onHandlerAuth}>
             <Text style={styles.buttonText}>{buttonTitle}</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

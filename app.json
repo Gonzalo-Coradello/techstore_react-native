@@ -27,6 +27,12 @@
         {
           "initialOrientation": "DEFAULT"
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photoPermission": "Let the app access your photos"
+        }
       ]
     ],
     "web": {

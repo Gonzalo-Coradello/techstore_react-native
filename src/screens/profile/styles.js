@@ -6,10 +6,15 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.background,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
   },
-  settingList: {
-    flexGrow: 1,
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 20,
+  },
+  header: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 20,
   },
 });

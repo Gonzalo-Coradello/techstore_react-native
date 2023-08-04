@@ -5,3 +5,5 @@ export { default as Cart } from './cart';
 export { default as Orders } from './orders';
 export { default as Auth } from './auth';
 export { default as Settings } from './settings';
+export { default as Profile } from './profile';
+export { default as Address } from './address';
