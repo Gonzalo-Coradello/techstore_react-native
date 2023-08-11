@@ -2,12 +2,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
-import { Address, Profile, Settings } from '../screens';
+import { Address, CreateAddress, Profile, Settings } from '../screens';
 import { COLORS, FONTS } from '../themes';
 
 const Stack = createNativeStackNavigator();
 
-function SettingsNavigator() {
+const SettingsNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName="Settings"
@@ -30,10 +30,17 @@ function SettingsNavigator() {
       })}>
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen
+        name="CreateAddress"
+        component={CreateAddress}
+        options={{
+          headerTitle: 'Create Address',
+        }}
+      />
       <Stack.Screen name="Address" component={Address} />
     </Stack.Navigator>
   );
-}
+};
 
 const styles = StyleSheet.create({
   goBack: {

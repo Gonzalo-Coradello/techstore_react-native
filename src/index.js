@@ -1,16 +1,26 @@
 import { useFonts } from 'expo-font';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import { Provider } from 'react-redux';
 
+import { init } from './db';
 import RootNavigator from './navigations';
 import { store } from './store';
-import { COLORS, FONTS } from './themes';
+import { FONTS, COLORS } from './themes';
+
+init()
+  .then(() => {
+    console.log('Initialized database');
+  })
+  .catch((err) => {
+    console.log('Initializing db failed');
+    console.log(err);
+  });
 
 export default function App() {
   const [loaded] = useFonts({
+    [FONTS.regular]: require('../assets/fonts/Inter-Regular.ttf'),
     [FONTS.bold]: require('../assets/fonts/Inter-Bold.ttf'),
-    [FONTS.medium]: require('../assets/fonts/Inter-Regular.ttf'),
-    [FONTS.regular]: require('../assets/fonts/Inter-Medium.ttf'),
+    [FONTS.medium]: require('../assets/fonts/Inter-Medium.ttf'),
     [FONTS.light]: require('../assets/fonts/Inter-Light.ttf'),
   });
 

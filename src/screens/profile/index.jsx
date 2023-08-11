@@ -8,8 +8,8 @@ import { COLORS } from '../../themes';
 
 const Profile = () => {
   const localId = useSelector((state) => state.auth.user.localId);
-  const [uploadImageProfile, { isLoading }] = useUpdateImageProfileMutation();
-  const { data: userData } = useGetProfileQuery({ localId });
+  const [uploadImageProfile, { data, isLoading, error }] = useUpdateImageProfileMutation();
+  const { data: userData, isLoading: isLoadingUserData } = useGetProfileQuery({ localId });
   const onHandlerImage = async ({ uri, base64 }) => {
     await uploadImageProfile({ localId, image: `data:image/jpeg;base64,${base64}` });
   };
