@@ -17,4 +17,4 @@ web-build/
 .metro-health-check*
 
 src/constants/firebase
-src/constants/google-cloud
+src/constants/maps

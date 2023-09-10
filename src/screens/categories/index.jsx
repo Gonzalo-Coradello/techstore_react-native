@@ -14,6 +14,8 @@ function Categories({ navigation }) {
     navigation.navigate('Products', { categoryId, color, name });
   };
 
+  console.log(categories);
+
   if (isLoading)
     return (
       <View style={styles.loaderContainer}>

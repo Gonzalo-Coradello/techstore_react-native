@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Button } from 'react-native';
 import { useSelector } from 'react-redux';
 
@@ -32,11 +32,17 @@ const CreateAddress = ({ navigation }) => {
     navigation.goBack();
   };
 
+  useEffect(() => {
+    if (location) {
+      navigation.navigate('Maps', { location });
+    }
+  }, [location]);
+
   return (
     <View style={styles.container}>
       <LocationSelector onLocation={onLocation} />
       <View style={styles.buttonContainer}>
-        <Button title="Confirm" onPress={onHandlerUpdateLocation} color={COLORS.secodary} />
+        <Button title="Confirm" onPress={onHandlerUpdateLocation} color={COLORS.secondary} />
       </View>
     </View>
   );
